@@ -1,0 +1,12 @@
+{
+  "autoload": {
+    "psr-4": {
+      "simFW\\": "vendor/simShop/core",
+      "app\\": "app"
+    }
+  },
+  "require": {
+    "gabordemooij/redbean": "dev-master"
+  }
+}
+
