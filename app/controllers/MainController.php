@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use simFW\Cache;
 
-class MainControler extends AppController {
+class MainController extends AppController {
 
     public function indexAction () {
         $brands = \R::find('brand', 'LIMIT 3');
