@@ -25,7 +25,7 @@ class Cache {
         if (file_exists($file)) {
             $content = unserialize(file_get_contents($file));
             if (time() <= $content['expire']) {
-                return $content;
+                return $content['data'];
             } else {
 
             }
