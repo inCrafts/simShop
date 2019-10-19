@@ -5,6 +5,7 @@ use simFW\Router;
 
 //   user routes
 
+Router::add('^product/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Product', 'action' => 'view']);
 
 
 //   admin routes
