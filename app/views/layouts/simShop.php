@@ -91,6 +91,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--bottom-header-->
 
 <div class="content">
+    <?php //session_destroy(); ?>
+    <?php debug($_SESSION); ?>
     <?= $content; ?>
 </div>
 
@@ -168,7 +170,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="../../../public/js/jquery-1.11.0.min.js"></script>
 <script src="js/imagezoom.js"></script>
 <script defer src="js/jquery.flexslider.js"></script>
-<script src="/js/simpleCart.min.js"> </script>
 <!--dropdown-->
 <script src="js/jquery.easydropdown.js"></script>
 <script type="text/javascript">
