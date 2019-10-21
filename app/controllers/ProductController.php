@@ -39,9 +39,10 @@ class ProductController extends AppController {
         $gallery = \R::findAll('gallery', 'product_id = ?', [$product->id]);
 
 //        Модификации товаров
+        $mods = \R::findAll('modification', 'product_id = ?', [$product->id]);
 
         $this->setMeta($product->title, $product->description, $product->keywords);
-        $this->set(compact('product', 'related', 'gallery', 'recentlyViewed', 'breadcrumbs'));
+        $this->set(compact('product', 'related', 'gallery', 'recentlyViewed', 'breadcrumbs', 'mods'));
     }
 
 }
