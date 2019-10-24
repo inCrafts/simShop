@@ -3086,3 +3086,7 @@ ul.tag-men {
 #cart table img {
 	height: 100px;
 }
+
+.del-item {
+	cursor: pointer;
+}
