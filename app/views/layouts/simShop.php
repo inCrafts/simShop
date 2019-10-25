@@ -52,7 +52,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <?php if (!empty($_SESSION['cart'])): ?>
                                 <span class="simpleCart_total"><?= $_SESSION['cart.currency']['symbol_left'] . $_SESSION['cart.sum'] . $_SESSION['cart.currency']['symbol_right'] ?></span>
                             <?php else: ?>
-                                <span class="simpleCart_empty"></span>
+                                <span class="simpleCart_total">Корзина пуста</span>
                             <?php endif; ?>
                         </div>
                     </a>

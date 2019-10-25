@@ -1,4 +1,4 @@
-// Cart scripts
+// Cart scripts starts
 
 $('body').on('click', '.add-to-cart-link', function (e) {
     e.preventDefault();
@@ -61,7 +61,21 @@ function getCart() {
         }
     });
 }
-// Cart scripts
+
+function clearCart() {
+    $.ajax({
+        url: '/cart/clear',
+        type: 'GET',
+        success: function(res) {
+            showCart(res);
+        },
+        error: function () {
+            alert('Ошибка! Попробуйте позже');
+        }
+    });
+    return false;
+}
+// Cart scripts ends
 
 
 // Currency scripts

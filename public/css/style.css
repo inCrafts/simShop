@@ -299,7 +299,7 @@ span.simpleCart_total {
 	height: 0;
 	left: 13px;
 	right: 0;
-	top: 36px;
+	top: 27px;
 	background: #73B6E1;
 	overflow: hidden;
 	opacity: 0;
@@ -1964,7 +1964,7 @@ h3.ghj {
 }
 .dropdown div {
     left: 3px;
-    top: 33px;
+    top: 24px;
 }
 figure.effect-bubba h4,figure.effect-bubba h2  {
     font-size: 1.6em;
@@ -2721,7 +2721,7 @@ figure.effect-bubba p {
 }
 .dropdown div {
     left: 0px;
-    top: 27px;
+    top: 18px;
 }
 .skyblue li>a, .skyblue>li.showhide span {
     font-size: 15px;

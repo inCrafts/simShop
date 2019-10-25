@@ -20,7 +20,7 @@ class ErrorHandler {
     public function exeptionHandler($e) {
 
         $this->logErrors($e->getMessage(), $e->getFile(), $e->getLine());
-        $this->displayError('Исклшючение', $e->getMessage(), $e->getFile(), $e->getLine(), $e->getCode());
+        $this->displayError('Исключение', $e->getMessage(), $e->getFile(), $e->getLine(), $e->getCode());
 
 
 
