@@ -86,7 +86,7 @@ $('#currency').change(function () {
 });
 // Currency scripts
 
-// Modifications scripts
+// Modifications scripts starts
 
 $('.available select').on('change', function () {
    let modId = $(this).val(),
@@ -99,4 +99,34 @@ $('.available select').on('change', function () {
         $('#base-price').text(symbolLeft + basePrice + symbolRight);
     }
 });
-// Modifications scripts
+// Modifications scripts ends
+
+// Search scripts starts
+
+let products = new Bloodhound({
+   datumTokenizer: Bloodhound.tokenizers.whitespace,
+   queryTokenizer: Bloodhound.tokenizers.whitespace,
+   remote: {
+       wildcard: '%QUERY',
+       url: path + '/search/seek?query=%QUERY'
+   }
+});
+
+products.initialize();
+
+$('#typeahead').typeahead({
+   //hind: false,
+   highlight: true
+}, {
+    name: 'products',
+    display: 'title',
+    limit: 9,
+    source: products
+    });
+
+$('#typeahead').bind('typeahead:select', function (ev, suggestion) {
+    console.log(suggestion);
+    window.location = path + '/search/?search=' + encodeURIComponent(suggestion.title);
+});
+// Search scripts ends
+

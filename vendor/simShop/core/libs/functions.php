@@ -13,3 +13,6 @@ function redirect($http = false) {
     header("Location: $redirect");
     exit;
 }
+function noChars($str) {
+    return htmlspecialchars($str, ENT_QUOTES);
+}
