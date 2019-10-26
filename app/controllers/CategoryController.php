@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 
+use app\models\Breadcrumbs;
 use app\models\Category;
 
 class CategoryController extends AppController {
@@ -15,7 +16,7 @@ class CategoryController extends AppController {
             throw new \Exception('Страница не найдена', 404);
         }
         // Хлебные крошки
-        $breadcrumbs = '';
+        $breadcrumbs = Breadcrumbs::getBreadcrumbs($category->id);
 
         $cat_model = new Category();
         $ids = $cat_model->getIds($category->id);
