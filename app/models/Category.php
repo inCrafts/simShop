@@ -3,9 +3,7 @@
 
 namespace app\models;
 
-
 use simFW\App;
-
 class Category extends AppModel {
 
     public function getIds($id) {

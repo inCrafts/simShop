@@ -43,7 +43,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="clearfix"></div>
                 </div>
             </div>
-            <?php // session_destroy(); ?>
             <div class="col-md-6 top-header-left">
                 <div class="cart box_1">
                     <a href="cart/show" onclick="getCart(); return false;">
@@ -88,10 +87,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <form action="search" method="get" autocomplete="off">
                         <input class="typeahead" id="typeahead" type="text" name="search" value="Поиск" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Поиск';}">
                         <input type="submit" value="">
-
                     </form>
-<!--                    <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">-->
-<!--                    <input type="submit" value="">-->
                 </div>
             </div>
             <div class="clearfix"> </div>
