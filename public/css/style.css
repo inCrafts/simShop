@@ -1430,16 +1430,16 @@ a.mask {
 .account-bottom {
     margin-top: 2.2em;
 }
-.account-left input[type="text"],.account-left input[type="password"] {
-    width: 90%;
-    margin: 0px;
-    color: #000;
-    background: none;
-    padding: 8px 10px;
-    outline: none;
-    border: 1px solid #000;
-    font-family: 'Lato-Regular';
-    font-size: 14px;
+.account-left input[type="text"],.account-left input[type="password"],.account-left input[type="email"] {
+	width: 90%;
+	margin: 0px;
+	color: #000;
+	background: none;
+	padding: 8px 10px;
+	outline: none;
+	border: 1px solid #000;
+	font-family: 'Lato-Regular';
+	font-size: 14px;
 	margin-bottom:20px;
 }
 .address {
@@ -3187,3 +3187,37 @@ span.twitter-typeahead {
     top: 46px !important;
 }
 /*search*/
+
+/*    Login    */
+
+.drop > .btn-group > a {
+	color: #FFFFFF;
+	cursor: pointer;
+	position: relative;
+	text-transform: uppercase;
+	top: -2px;
+}
+
+/*.dropdown-menu {*/
+/*	background-color: #000000;*/
+/*}*/
+
+/*    Валидация формы регистрации    */
+
+form .has-success .form-control {
+	border-color: #008000;
+}
+
+form .has-error .form-control {
+	border-color: #ff0000;
+}
+
+.has-error, .has-success {
+	position: relative;
+}
+
+.form-control-feedback {
+	right: 10px;
+	top: 25px;
+}
+
