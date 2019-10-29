@@ -20,7 +20,10 @@ class UserController extends AppController {
             } else {
                 $user->attributes['password'] = password_hash($user->attributes['password'], PASSWORD_DEFAULT);
                 if ($user->save('user')) {
-                    $_SESSION['success'] = 'Пользователь успешно зарегнистрирован!';
+                    foreach ($user->attributes as $attribute => $val) {
+                        $attribute !== 'password' ? $_SESSION['user'][$attribute] = $val : $_SESSION['user'][$attribute] = '';
+                    }
+                    $_SESSION['success'] = 'Пользователь успешно зарегистрирован!';
                 } else {
                     $_SESSION['error'] = 'Ошиибка регистрации.';
                 }
@@ -32,9 +35,21 @@ class UserController extends AppController {
 
     public function loginAction() {
 
+        if (!empty($_POST)) {
+            $user = new User();
+            if ($user->login()) {
+                $_SESSION['success'] = 'Вы успешно авторизованы!';
+            } else {
+                $_SESSION['error'] = 'Логин или пароль введены неверно.';
+            }
+            redirect();
+        }
+        $this->setMeta('Вход');
     }
 
     public function logoutAction() {
 
+        if (isset($_SESSION['user'])) unset( $_SESSION['user']);
+        redirect();
     }
 }
