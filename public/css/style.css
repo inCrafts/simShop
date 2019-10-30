@@ -3221,3 +3221,11 @@ form .has-error .form-control {
 	top: 25px;
 }
 
+#cart img,
+.cart table img {
+	height: 100px;
+}
+
+.del-item {
+	cursor: pointer;
+}
