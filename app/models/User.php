@@ -6,6 +6,7 @@ namespace app\models;
 class User extends AppModel {
 
     public $attributes = [
+        'id' => '',
         'login' => '',
         'password' => '',
         'name' => '',
@@ -15,6 +16,7 @@ class User extends AppModel {
 
     public $rules = [
         'required' => [
+            ['id'],
             ['login'],
             ['password'],
             ['name'],
@@ -34,11 +36,11 @@ class User extends AppModel {
         $user = \R::findOne('user', 'login = ? OR email = ?', [$this->attributes['login'], $this->attributes['email']]);
         if ($user) {
             if ($user->login == $this->attributes['login']) {
-                $this->errors['unique'][] = 'Указаллый логин уже занят';
+                $this->errors['unique'][] = 'Указанный логин уже занят';
             }
 
             if ($user->email == $this->attributes['email']) {
-                $this->errors['unique'][] = 'Указаллый email уже занят';
+                $this->errors['unique'][] = 'Указанный email уже занят';
             }
             return false;
         }
