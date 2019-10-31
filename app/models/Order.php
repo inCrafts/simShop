@@ -2,12 +2,11 @@
 
 
 namespace app\models;
-
-
 use simFW\App;
-use Swift_Mailer;
 use Swift_SmtpTransport;
+use Swift_Mailer;
 use Swift_Message;
+
 
 class Order extends AppModel {
 
@@ -26,6 +25,7 @@ class Order extends AppModel {
 
         $sql_part = '';
         foreach ($_SESSION['cart'] as $product_id => $product) {
+
             $product_id = (int)$product_id;
             $sql_part .= "($order_id, $product_id, {$product['qty']}, '{$product['title']}', {$product['price']}),";
         }
@@ -33,40 +33,38 @@ class Order extends AppModel {
         \R::exec("INSERT INTO order_product (order_id, product_id, qty, title, price) VALUES $sql_part");
     }
 
+    public static function mailOrder($order_id, $user_email) {
 
-    public static function mailOrder($order_id, $user_email){
-        // Create the Transport
-        $transport = (new Swift_SmtpTransport(App::$app->getProperty('smtp_host'), App::$app->getProperty('smtp_port'), App::$app->getProperty('smtp_protocol')))
+        // Transport
+        $transport = (new \Swift_SmtpTransport(App::$app->getProperty('smtp_host'), App::$app->getProperty('smtp_port'), App::$app->getProperty('smtp_protocol')))
             ->setUsername(App::$app->getProperty('smtp_login'))
-            ->setPassword(App::$app->getProperty('smtp_password'))
-        ;
-        // Create the Mailer
-        $mailer = new Swift_Mailer($transport);
+            ->setPassword(App::$app->getProperty('smtp_password'));
 
-        // Create a message
+        // Mailer
+        $mailer = new \Swift_Mailer($transport);
+
+        // Message
         ob_start();
-        require APP . '/views/Mail/orderMail.php';
+        require_once APP . '/views/Mail/orderMail.php';
         $mail = ob_get_clean();
 
-        $message_client = (new Swift_Message("Вы совершили заказ №{$order_id} В магазине " . App::$app->getProperty('shop_name')))
-            ->setFrom([App::$app->getProperty('smtp_login') => App::$app->getProperty('shop_name')])
+        $messageToUser = (new \Swift_Message("Ваш заказ в машазине " . App::$app->getProperty('shop_name')))
+        ->setFrom([App::$app->getProperty('smtp_login') => App::$app->getProperty('shop_name')])
             ->setTo($user_email)
-            ->setBody($mail, 'text/html')
-        ;
+            ->setBody($mail, 'text/html');
 
-        $message_admin = (new Swift_Message("Ваш заказ №{$order_id}"))
+        $messageToManager = (new \Swift_Message("Сделан Заказ №{$order_id}"))
             ->setFrom([App::$app->getProperty('smtp_login') => App::$app->getProperty('shop_name')])
             ->setTo(App::$app->getProperty('admin_email'))
-            ->setBody($mail, 'text/html')
-        ;
+            ->setBody($mail, 'text/html');
 
-        // Send the message
-        $result = $mailer->send($message_client);
-        $result = $mailer->send($message_admin);
+        // sending message
+        $res = $mailer->send($messageToManager);
+        $res = $mailer->send($messageToUser);
         unset($_SESSION['cart']);
         unset($_SESSION['cart.qty']);
         unset($_SESSION['cart.sum']);
         unset($_SESSION['cart.currency']);
-        $_SESSION['success'] = 'Спасибо за Ваш заказ. В ближайшее время с Вами свяжется менеджер для согласования заказа';
+        $_SESSION['success'] = 'Благодарим за заказ! В течениии 10 минут Вам перезвонит наш менеджер';
     }
 }
